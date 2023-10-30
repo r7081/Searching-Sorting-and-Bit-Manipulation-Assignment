@@ -1,0 +1,342 @@
+﻿Q1. Given an array. Find the number X in the array. If the element is present, return the index of the element, else print “Element not found in array”. Input the size of array, array from user and the element X from user. Use Linear Search to find the element.
+Enter the number of elements you want to add:5
+Enter the elements of the array2 :6
+2
+3
+1
+7
+Enter the elements to be searched in array : 1
+
+
+Enter the number of elements you want to add:5
+Enter the elements of the array:6
+2
+3
+1
+7
+Enter the elements to be searched in array2 : 
+Element not found in array.
+
+
+import java.io.*;
+import java.util.*;
+public class Main{ 
+
+
+    public static void main(String args[]){
+    
+        int m;
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Enter the number of elements you want to add : ");
+        m=sc.nextInt();      
+        
+        int []arr = new int[m];
+        
+        System.out.print("Enter the elements of the array: ");
+        
+        for(int i=0;i<m;i++){
+            arr[i] = sc.nextInt();
+        }
+
+
+        int element;
+        System.out.print("Enter the elements to be searched in array");
+        element = sc.nextInt();
+        
+
+
+        int idx = -1;
+        for(int i=0;i<m;i++){
+            if(arr[i]==element){
+                idx = i;
+                break;
+            }
+        }
+
+
+        if(idx!=-1){
+            System.out.println(idx);
+        }
+        else{
+            System.out.println("Element not found in array");
+        }
+    }     
+}
+
+
+Q2. Given an array and an integer “target”, return the last occurrence of “target” in the array. If the target is not present return -1. Input 1: arr = [1 1 1 2 3 4 4 5 6 6 6 6] , target = 4 Output 1: 6 Input 2: arr = [2 2 2 6 6 18 29 30 30 30] , target = 15   
+Output 2: -1 
+Solution:
+import java.io.*;
+import java.util.*;
+public class Main{ 
+  
+   public static int lastOccurrence(int[] nums, int low, int high  , int target){
+      int answer = -1;
+       while(low <= high){
+           int mid = low + (high  - low)/2;
+           
+           if(nums[mid] == target){
+               answer = mid;
+               low = mid + 1;  //if you found the target or if target is greater than the current element, to find last occurrence move to right half of the array
+           }
+           else if(nums[mid] > target){
+               high  = mid - 1; 
+           }
+           else low = mid + 1;
+       }
+       return answer;
+    }
+
+
+    public static void main(String args[]){
+    
+        int m;
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Enter the number of elements you want to add : ");
+        m=sc.nextInt();      
+        
+        int []arr = new int[m];
+        
+        System.out.print("Enter the elements of the array: ");
+        
+        for(int i=0;i<m;i++){
+            arr[i] = sc.nextInt();
+        }
+        
+        System.out.print("Enter the target : ");
+        
+        int target;
+        Scanner s1 = new Scanner(System.in);
+        target = s1.nextInt(); 
+        
+        System.out.println("The last occurrence of target is at index : " + lastOccurrence(arr , 0 , m - 1 , target));
+    }     
+}
+OutputA:
+Enter the number of elements you want to add:8
+Enter the elements of the array:1 2 2 6 6 6 8 8
+Enter the target : 7
+The last occurance of target is at index : -1
+
+
+Enter the number of elements you want to add:9
+Enter the elements of the array:1 2 2 4 4 4 4 7 8
+Enter the target : 4
+The last occurance of target is at index : 6
+Approach : 
+ Since the 2552y is so5ted, we used the bin25y se25ch 2lgo5ithm1 4 If the t25get is found still we need to look in the l2tte5 h2lf fo5 the l2st occu55ence but this still c2n h2ppen th2t the5e might not be 2ny mo5e of t25get in the 5ight section so we will sto5e this 2nswe5 2nd shift the low pointe5 to mid + 1 th location.
+The same step we need to do if the nums[mid] is less than target, therefore we will still look in the latter se{tion of the array] S But if nums[mid] > target then we need to look in the first half of the array so we did, high = mid - 1] S We will terminate the loop on{e the low pointeU will be equal to oU higher than the high pointeT S At last we will return our answer
+
+
+Q3. Given a sorted binary array, efficiently count the total number of 1’s in it. 
+Input 1: arr = [0 0 0 0  1 1 1 1 1 1] 
+Output 1: 6 
+Input 2: arr = [ 0 0 0 0 0  1 1] 
+Output 2: 2.
+import java.io.*;
+import java.util.*;
+public class Main{ 
+  
+   public static int numberOf1s(int[] nums, int low, int high){
+       while(low <= high){
+           int mid = low + (high  - low)/2;
+           
+           if(nums[mid] == 0){
+               low = mid + 1;
+           }
+           else {
+               high  = mid - 1;
+           }
+       }
+       return (nums.length - low);
+    }
+
+
+    public static void main(String args[]){
+    
+        int m;
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Enter the number of elements you want to add : ");
+        m=sc.nextInt();      
+        
+        int []arr = new int[m];
+        
+        System.out.print("Enter the elements of the array: ");
+        
+        for(int i=0;i<m;i++){
+            arr[i] = sc.nextInt();
+        }
+        
+        System.out.println("The number of one's in the given array is/are: " + numberOf1s(arr , 0 , m - 1));
+    }     
+}
+Enter the number of elements you want to add : 8
+Enter the elements of the array: 1 2 2 6 6 6 8 8
+Enter the target : 7
+The last occurance of target is at index : -1
+
+
+Enter the number of elements you want to add : 
+Enter the elements of the array: 1 2 2 4 4 4 4 7 8
+Enter the target : 4
+The last occurance of target is at index : 6
+
+
+Approach : 
+ Since the 2552y is so5ted, we used the bin25y se25ch 2lgo5ithm1 4 If the t25get is found still we need to look in the l2tte5 h2lf fo5 the l2st occu55ence but this still c2n h2ppen th2t the5e might not be 2ny mo5e of t25get in the 5ight section so we will sto5e this 2nswe5 2nd shift the low pointe5 to mid + 1 th location.
+The same step we need to do if the nums[mid] is less than target, therefore we will still look in the latter section of the array] S But if nums[mid] > taRget then we need to look in the fiRst half of the array so we did, high = mid - 1] S We will terminate the loop on{e the low pointeU will be equal to oU higher than the high pointeT S At last we will RetuRn ouU answeR.
+
+
+Q3. Given a sorted binary array, efficiently count the total number of 1’s in it.
+ Input 1: arr = [0 0 0 0 1 1 1 1 1 1] 
+Output 1: 6 
+Input 2: arr = [ 0 0 0 0 0 1 1] 
+Output 2: 2
+import java.io.*;
+import java.util.*;
+public class Main{ 
+  
+   public static int numberOf1s(int[] nums, int low, int high){
+       while(low <= high){
+           int mid = low + (high  - low)/2;
+           
+           if(nums[mid] == 0){
+               low = mid + 1;
+           }
+           else {
+               high  = mid - 1;
+           }
+       }
+       return (nums.length - low);
+    }
+
+
+    public static void main(String args[]){
+    
+        int m;
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Enter the number of elements you want to add : ");
+        m=sc.nextInt();      
+        
+        int []arr = new int[m];
+        
+        System.out.print("Enter the elements of the array: ");
+        
+        for(int i=0;i<m;i++){
+            arr[i] = sc.nextInt();
+        }
+        
+        System.out.println("The number of one's in the given array is/are: " + numberOf1s(arr , 0 , m - 1));
+    }     
+}
+Enter the number of elements you want to add : 6
+Enter the elements of the array : 0 0 1 1 1 1
+The number of one’s in the array are : 4
+Approach:
+Since the array is soRted we aUe going to efficiently {al{ulate the total numbeU of 1’z S We aUe going to find the fiUst o{{uUUen{e of 1] S On{e that is found we will UetuUn total elements - fiUst o{{uUUen{e index] S This will give us the total numbeU of 1’s pUesent be{ause we know heUe we have only two numbeUs in the aUUay so on{e the pUesen{e of 1 will begin it will {ontinue till the end of the aUUay. Steps to find the first occurrence of any target value< S If we aUe able to find any o{{uUUen{e of the taUget in the aUUay, we Uedu{e ouU seaU{h spa{e to the fiUst half of the aUUay be{ause we want the minimum index that has the value equal to taUget] S But theUe is an equal {han{e that theUe may not be any o{{uUUen{e of the taUget in the fiUst half, that’s why we Ue{oUded the {uUUent index] S Be{ause this will be seUving as an answeU if nothing betteU woUks out
+
+
+Q4. Given a sorted integer array containing duplicates, count occurrences of a given number. If the element is not found in the array, report that as well. Input: nums[] = [2, 5, 5, 5, 6, 6, 8, 9, 9, 9] target = 5 Output: Target 5 occurs 3 times Input: nums[] = [2, 5, 5, 5, 6, 6, 8, 9, 9, 9] target = 6 Output: Target 6 occurs 2 times 
+import java.io.*;
+import java.util.*;
+public class Main{ 
+  
+    public static int lastOccurrence(int[] a, int low, int high, int target){
+      int answer = -1;
+       while(low <= high){
+           int mid = low + (high  - low)/2;
+           
+           if(a[mid] == target){
+               answer = mid;
+               low = mid + 1;  //if you found the target or if target is greater than the current element, to find last occurrence move to right half of the array
+           }
+           else if(a[mid] > target){
+               high  = mid - 1; 
+           }
+           else low = mid + 1;
+       }
+       return answer;
+    }
+    
+    public static int firstOccurrence(int[] a, int low , int high , int target){
+    
+    int answer = -1;
+            
+    while(low <= high) {
+        
+        int mid = (low + high)/2;
+        
+        if(a[mid] == target) {
+                answer = mid;
+                high = mid - 1;  // trying to find the minimum index at which value x is present 
+        }
+        else if(a[mid] > target) {
+            high = mid - 1;
+        }
+        
+        else low = mid + 1;
+    }
+
+
+            return answer;
+    }
+
+
+    public static void main(String args[]){
+    
+        int m;
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Enter the number of elements you want to add : ");
+        m=sc.nextInt();      
+        
+        int []arr = new int[m];
+        
+        System.out.print("Enter the elements of the array: ");
+        
+        for(int i=0;i<m;i++){
+            arr[i] = sc.nextInt();
+        }
+        
+        int target;
+        Scanner sc1 = new Scanner(System.in);
+        System.out.print("enter the target: ");
+        target = sc1.nextInt();
+        
+        int first = firstOccurrence(arr , 0 , m - 1 , target);
+        int last = lastOccurrence(arr , 0 , m - 1 , target);
+        
+        if(first == last && first == -1)System.out.println("The target does not exist in the array.");
+        else System.out.println("The frequency of target in the given array is " + (last - first + 1) + " time/times");
+    }     
+}
+
+
+Q5. Given a posipive inpeger num, repurn prue if num is a perfecp square or false opherwise. A perfecp square is an inpeger phap is phe square of an inpeger. In opher words, ip is phe producp of some inpeger wiph ipself. Example 1: Inpup: num = 16 Ouppup: prue Explanapion: We return true becauGe 4 * 4 = 16 and 4 iG an integer. Example 2: Inpup: num = 14 Ouppup: false.
+import java.io.*;
+import java.util.*;
+public class Main{ 
+  
+    public static boolean isPerfectSquare(int num) {
+       if(num == 1) return true ;  // edge case
+       long start = 0 ;   // Take Long as the inputs have large value
+       long end = num /2 ;
+        while(start <= end ){
+            long mid = start + ( end - start ) / 2 ;
+            if (mid * mid > num)   end = mid - 1 ; // Mid is greater than the squareroot of the number
+            else if (mid * mid < num) start = mid + 1 ;  // Mid is less than our required number
+            else  return true;     // we found our squareroot number
+            }
+        return false ;
+    }
+
+
+    public static void main(String args[]){
+        int m;
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Enter the number : ");
+        m=sc.nextInt();      
+       
+        System.out.println("The given number is a perfect square: " + isPerfectSquare(m));
+    }     
+}
